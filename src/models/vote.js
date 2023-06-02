@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true
       },
       vote: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
           notEmpty: {msg: 'Le vote ne doit pas être vide'},

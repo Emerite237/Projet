@@ -10,22 +10,7 @@
 
  module.exports= (server) => {
     server.get('/api/findall/post',/* auth,*/cors(),async(req,res,next)=>{
-      /*  if(req.query.titre){
-            const titre=req.query.titre
-            return post.findAll({
-                where:{titre:{[Op.like]: `${titre}%`}
-            },
-            order:['titre'],
-            limit:4,
-            raw:true
-        })
-            .then(post =>{
-                const message= "l'element a bien ete retrouve"
-                res.json(post)
-                next()
-                
-            })
-        */
+    
 try {
 
     var posts= await  post.findAll({

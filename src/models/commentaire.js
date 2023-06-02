@@ -35,14 +35,14 @@ module.exports = (sequelize,DataTypes)=> {
                 notNull:{msg:'cette propriete est requise '}
             }
         },
-        id_parents:{
+      /*  id_parents:{
             type: DataTypes.INTEGER,
-            allowNull:true,
+            allowNull:false,
             validate: {
                 isInt: {msg:'id  est un  entier'},
                 notNull:{msg:'cette propriete est requise '}
             }
-        }
+        }*/
     },
     {
         timestamps:true,

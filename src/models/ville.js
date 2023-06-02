@@ -13,22 +13,7 @@ module.exports = (sequelize, DataTypes) => {
           notNull: {msg: 'Le libelé de la ville est une propriété requise'}
         }
       },
-      lat_ville: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
-        validate: {
-          notEmpty: {msg: 'La latitude ne doit pas être vide'},
-          notNull: {msg: 'La latitude est une propriété requise'}
-        }
-      },
-      long_ville: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
-        validate: {
-          notEmpty: {msg: 'La longitude ne doit pas être vide'},
-          notNull: {msg: 'La longitude est une propriété requise'}
-        }
-      },
+    
       id_region: {
         type: DataTypes.INTEGER,
         allowNull: false,

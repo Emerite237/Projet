@@ -9,6 +9,10 @@ const verificationmodel=require('../models/verification')
 var imageuploadsmodels=require('../models/imagesuploads')
 var imagemodels =require('../models/images')
 
+const commentaireModel = require('../models/commentaire')
+const voteModel = require('../models/vote')
+const favoriModel = require('../models/favori')
+
 
 const { Sequelize, DataTypes } = require('sequelize')
 
@@ -32,6 +36,12 @@ const ville = villeModel(sequelize, DataTypes)
 const region = regionModel(sequelize, DataTypes)
 const categorie=categoriemodel(sequelize,DataTypes)
 const verification=verificationmodel(sequelize,DataTypes)  
+
+const commentaire = commentaireModel(sequelize, DataTypes)
+const vote = voteModel(sequelize, DataTypes)
+
+const favori = favoriModel(sequelize, DataTypes)
+  
 
 const initDb = () => {
   return sequelize.sync({force: true}).then(_ => {
@@ -81,6 +91,61 @@ ville.belongsTo(region,{
 })
 
 
+// Categorie foreign Key on Types table
+categorie.hasMany(type,{
+  foreignKey:'id_cat',
+  as: 'categories'
+})
+type.belongsTo(categorie,{
+  foreignKey: 'id_cat',
+  as: 'categories'
+})
+
+
+utilisateur.hasMany(verification,{
+  foreignKey: 'id_utilisateur'
+})
+
+verification.belongsTo(utilisateur,{
+  foreignKey: 'id_utilisateur'
+})
+
+// favori foreins keys 
+
+post.hasMany(favori,{
+  foreignKey:'id_post',
+})
+favori.belongsTo(post,{
+  foreignKey: 'id_post',
+})
+
+
+utilisateur.hasMany(favori,{
+  foreignKey: 'id_utilisateur'
+})
+
+favori.belongsTo(utilisateur,{
+  foreignKey: 'id_utilisateur'
+})
+
+// vote foreign keys 
+
+post.hasMany(vote,{
+  foreignKey:'id_post',
+})
+vote.belongsTo(post,{
+  foreignKey: 'id_post',
+})
+
+
+utilisateur.hasMany(vote,{
+  foreignKey: 'id_utilisateur'
+})
+
+vote.belongsTo(utilisateur,{
+  foreignKey: 'id_utilisateur'
+})
+
 module.exports = { 
- sequelize,utilisateur, post, img, type, ville, region,categorie,verification,imagesuploads
+ sequelize, utilisateur, post, img, type, ville, region, categorie, commentaire, vote, verification, favori,imagesuploads
 }

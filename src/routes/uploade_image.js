@@ -58,16 +58,18 @@ module.exports= (server) => {
      
       image.id_posts=parseInt(c)
       var paths = req.files.map(file => file.path);
+      var noms = req.files.map(file => file.filename);
 
       
 var newpaths =  await paths.map(function(path) {
   return path.replace(/\\/g, "/");
 })
 
-var files= req.files.map(file=>({path:file.path.replace(/\\/g, "/"),id_post:c}));
+var files= req.files.map(file=>({path:file.path.replace(/\\/g, "/"),id_post:c,nom:file.filename}));
       console.log(paths)
-      console.log(newpaths)
-      await imagesuploads.bulkCreate(files)
+      console.log(noms)
+      console.log(files)
+     await imagesuploads.bulkCreate(files)
       
     
      //req.files.forEach(function(file) {

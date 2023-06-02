@@ -21,8 +21,7 @@ sequelize.sync({force:false}).then( ()=>console.log('base de donnée pret'));
 //session middleware
 
 app.use("/public/data/uploads",express.static(path.join(__dirname,"/public/data/uploads")))
-app
-.use(cookiesParser())
+app.use(cookiesParser())
 .use(session({
     secret:'key that will be secret',
     resave:false,
@@ -42,6 +41,10 @@ methods:"GET,POST,HEAD,PUSH,DELETE,PATCH" }));
 //ici, nous placerons nos futurs points de terminaison. 
 
 
+// point de terminaison pour la recherche 
+
+require('./src/routes/recherche')(app);         //    http://localhost:3000/api/search/:word
+
 // point de terminaison des publication
 require("./src/routes/findbypk")(app)        /* http://localhost:3000/api/post/?id=1   a la place du 1 tu peux mettre n'importe quel id    */ 
 
@@ -53,7 +56,46 @@ require('./src/routes/create_post')(app);    //    http://localhost:3000/api/pos
 require('./src/routes/update_post')(app);    //    http://localhost:3000/api/post/modifier/:id
 require('./src/routes/supprimer_post')(app);    //    http://localhost:3000/api/post/supprimer/:id
 
-require('./src/routes/recherche')(app);         //    http://localhost:3000/api/search/:word
+
+
+
+require('./src/routes/post_ville')(app)
+require('./src/routes/favoris')(app)           
+  //  http://localhost:3000/api/favoris
+require('./src/routes/commentaires')(app)
+//  http://localhost:3000/api/commentaire/nouveau  pour cree un commentaire
+//  http://localhost:3000/api/commentaire/:id_post   pour retourner les commentaire  d'un post en fonction de l'id 
+
+//  http://localhost:3000/api/commentaire/supprimer/:id_commentaire     pour supprimer un commentaire
+
+require('./src/routes/post_region')(app)
+
+
+//   point de terminaisons des likes et dislikes 
+
+require('./src/routes/votes')(app)      
+
+/*
+http://localhost:3000/api/vote/like/:id   
+
+http://localhost:3000/api/vote/dislike/:id
+
+http://localhost:3000/api/vote/:id
+
+http://localhost:3000/api/vote/like/count/:id
+
+http://localhost:3000/api/vote/dislike/count/:id
+
+http://localhost:3000/api/vote/likes
+
+
+
+
+
+
+
+*/
+
 // point de terminaison des images 
 
 
@@ -73,26 +115,43 @@ require("./src/routes/findpk_images")(app);            // http://localhost:3000/
 // point de terminaison des utilisateurs
 
 
-require('./src/routes/connexion')(app)       //    http://localhost:3000/api/login
-require('./src/routes/inscription')(app)     //    http://localhost:3000 /api/register
-require('./src/routes/create_user')(app);
-require('./src/routes/verification')(app)
+require('./src/routes/utilisateurs')(app)      
+ //    http://localhost:3000/api/login pour la connexion d'un utilisateur
+require('./src/routes/utilisateurs')(app)     
+//    http://localhost:3000 /api/register pour l'inscription d'un utilisateur
+require('./src/routes/utilisateurs')(app);    
+//   http://localhost:3000     /api/validation/:id/:token  pour verifier le token d'un utilisateur 
+require('./src/routes/utilisateurs')(app)    
+ //     http://localhost:3000 /api/userexist/:email pour verifier l'existence d'une adresse mail
+require('./src/routes/utilisateurs')(app)  
+  //        http://localhost:3000/api/passrecup    pour la mise ajour du mot de passe apres qu'on l'ai  recupere 
+require('./src/routes/utilisateurs')(app)     
+  //     http://localhost:3000/api/passupdate   modification du mot de passe 
+require('./src/routes/utilisateurs')(app)       
+//     http://localhost:3000/api/userupdate   mise a jour de l'utilisateur
+
+
+
+
 
 //point de terminaisons sur les types,villes,regions et categorie
 require('./src/routes/create_type')(app);       //    http://localhost:3000/api/type
+require('./src/routes/create_categorie')(app);       //    http://localhost:3000/api/categorie
 require('./src/routes/create_ville')(app);      //   http://localhost:3000/api/ville
 
 require('./src/routes/create_region')(app);       //   http://localhost:3000/api/region
 
+//
 
-app.get('/', (req, res) => {
-   //  res.send(console.log(req.session.utilisateur.nom))
- })
+app.get('/',(req,res)=>{
+  console.log(req.session)
+  res.send('Hello session')
+})
 
 //On ajoute la gestion des erreurs 404
 app.use(({res})=>{
-    const message ='Impossible de trouver la ressource demandée! vous pouvez essayer une autre URL.'
-    res.status(404).json({message})
+  const message ='Impossible de trouver la ressource demandée! vous pouvez essayer une autre URL.'
+  res.status(404).json({message})
 })
 
 app.listen(port,()=>console.log(`Notre application Node est démarrée sur : http://localhost:${port}`))
