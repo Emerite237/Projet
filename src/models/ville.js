@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
     
-      id_region: {
+      Lib_region: {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {

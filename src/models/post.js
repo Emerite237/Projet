@@ -2,7 +2,9 @@
 
 const validetype=['parcs','zoo','lac','grotte','plage','montagne']
 
-const valideville=['Yaoundé','Douala','Bertoua','Bafoussam','Ngoundéré']
+const valideregion=['NORD','SUD','EST','OUEST','CENTRE','SUD-OUEST','EXTREME-NORD','ADAMAOUA','LITTORAL','NORD-OUEST',]
+
+
 
 module.exports = (sequelize,DataTypes)=> {
 
@@ -101,13 +103,24 @@ module.exports = (sequelize,DataTypes)=> {
             allowNull: false,
            
             validate:{
-                villevalide(value){
-                    if(!valideville.includes(value)){
+              
+                notEmpty:{msg:'la ville est obligatoire'},
+                notNull:{msg: ' cette ville propriete est requise'}
+            }
+        },
+         lib_region:{
+            type: DataTypes.STRING,
+            allowNull: false,
+           
+            validate:{
+               regionvalide(value){
+                    if(!valideregion.includes(value)){
                         throw new console.error( "le type de tourisme renseigner n'existe pas");
                     }
                 },
-                notEmpty:{msg:'la ville est obligatoire'},
-                notNull:{msg: ' cette ville propriete est requise'}
+              
+                notEmpty:{msg:'la region est obligatoire'},
+                notNull:{msg: ' cette region est une  propriete  requise'}
             }
         },
         id_utilisateur:{

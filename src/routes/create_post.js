@@ -16,6 +16,7 @@ module.exports= (server) => {
     
     posts.lib_type=req.body.lib_type
     posts.lib_ville=req.body.lib_ville
+    posts.lib_region=req.body.lib_region
     posts.id_utilisateur= req.session.user.id_utilisateur
     var headers = req.headers;
 
