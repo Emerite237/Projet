@@ -1,4 +1,8 @@
+//const { Types } = require("mariadb")
+
 const validetype=['parcs','zoo','lac','grotte','plage','montagne']
+
+const valideville=['Yaoundé','Douala','Bertoua','Bafoussam','Ngoundéré']
 
 module.exports = (sequelize,DataTypes)=> {
 
@@ -31,7 +35,7 @@ module.exports = (sequelize,DataTypes)=> {
             type: DataTypes.DOUBLE,
             allowNull:false,
             validate: {
-                isInt: {msg:'la latitude est un reel'},
+                isFloat: {msg:'la latitude est un reel'},
                 notNull:{msg:'cette propriete est requise '},  max:{
                     args:[2000],
                     msg:'votre latitude ets trop grande,veuiller la reduire'
@@ -46,7 +50,7 @@ module.exports = (sequelize,DataTypes)=> {
             type: DataTypes.DOUBLE,
             allowNull:false,
             validate: {
-                isInt: {msg:'la longitude est un reel'},
+                isFloat: {msg:'la longitude est un reel'},
                 notNull:{msg:'cette propriete est requise '},
                 max:{
                     args:[2000],
@@ -76,22 +80,35 @@ module.exports = (sequelize,DataTypes)=> {
             }
 
         },
-        id_type: {
-            type: DataTypes.INTEGER,
-            allowNull:false,
-            validate: {
-                isInt: {msg:'id  est un  entier'},
-                notNull:{msg:'cette propriete est requise '}
+        lib_type: {
+            type: DataTypes.STRING,
+            allowNull: false,
+           
+            validate:{
+
+                typevalide(value){
+                    if(!validetype.includes(value)){
+                        throw new console.error( "le type de tourisme renseigner n'existe pas");
+                    }
+                },
+                notEmpty:{msg:'le type est obligatoire'},
+                notNull:{msg: 'ce  type propriete est requise'},
+
             }
         },
-        id_ville:{
-            type: DataTypes.INTEGER,
-            allowNull:false,
-            validate: {
-                isInt: {msg:'id  est un  entier'},
-                notNull:{msg:'cette propriete est requise '}
+        lib_ville:{
+            type: DataTypes.STRING,
+            allowNull: false,
+           
+            validate:{
+                villevalide(value){
+                    if(!valideville.includes(value)){
+                        throw new console.error( "le type de tourisme renseigner n'existe pas");
+                    }
+                },
+                notEmpty:{msg:'la ville est obligatoire'},
+                notNull:{msg: ' cette ville propriete est requise'}
             }
-
         },
         id_utilisateur:{
             type: DataTypes.INTEGER,

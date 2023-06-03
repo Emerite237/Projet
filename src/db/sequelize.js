@@ -82,11 +82,11 @@ post.belongsTo(utilisateur,{
 
 // Region foreign Key to villes table
 region.hasMany(ville,{
-  foreignKey:'id_ville',
+  foreignKey:'id_region',
   as: 'region'
 })
 ville.belongsTo(region,{
-  foreignKey: 'id_ville',
+  foreignKey: 'id_region',
   as: 'region'
 })
 
@@ -147,5 +147,5 @@ vote.belongsTo(utilisateur,{
 })
 
 module.exports = { 
- sequelize, utilisateur, post, img, type, ville, region, categorie, commentaire, vote, verification, favori,imagesuploads
+ sequelize, utilisateur, post, img, type, ville, region, categorie, commentaire,vote, verification, favori,imagesuploads
 }

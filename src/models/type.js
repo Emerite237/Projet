@@ -16,12 +16,15 @@ module.exports = (sequelize, DataTypes) => {
           notNull: {msg: 'Le libelé du type est une propriété requise'}
         }
       },
-      id_cat: {
-        type: DataTypes.INTEGER,
+      lib_cat: {
+        type: DataTypes.STRING,
         allowNull: false,
+        unique:{
+          msg:'ce type est deja enregistrer'
+        },
         validate: {
-          notEmpty: {msg: 'La catégorie ne doit pas être vide'},
-          notNull: {msg: 'La catégorie est une propriété requise'}
+          notEmpty: {msg: 'Le libélé du type ne doit pas être vide'},
+          notNull: {msg: 'Le libelé du type est une propriété requise'}
         }
       }
     }, {

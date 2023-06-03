@@ -14,8 +14,8 @@ module.exports= (server) => {
     posts.longitude=req.body.longitude
     posts.latitude=req.body.latitude
     
-    posts.id_type=req.body.id_type
-    posts.id_ville=req.body.id_ville
+    posts.lib_type=req.body.lib_type
+    posts.lib_ville=req.body.lib_ville
     posts.id_utilisateur= req.session.user.id_utilisateur
     var headers = req.headers;
 

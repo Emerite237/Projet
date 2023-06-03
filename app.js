@@ -59,7 +59,7 @@ require('./src/routes/supprimer_post')(app);    //    http://localhost:3000/api/
 
 
 
-require('./src/routes/post_ville')(app)
+require('./src/routes/post_ville')(app)               
 require('./src/routes/favoris')(app)           
   //  http://localhost:3000/api/favoris
 require('./src/routes/commentaires')(app)
@@ -68,19 +68,28 @@ require('./src/routes/commentaires')(app)
 
 //  http://localhost:3000/api/commentaire/supprimer/:id_commentaire     pour supprimer un commentaire
 
-require('./src/routes/post_region')(app)
 
 
+
+require('./src/routes/villes')(app)          /*http://localhost:3000/api/regions  pour avoir la liste des region avec leur id 
+                                            
+                                             http://localhost:3000/api/ville pour avoir la liste des ville avec leur id  et la region assoscie
+
+                                           */
 //   point de terminaisons des likes et dislikes 
 
-require('./src/routes/votes')(app)      
+require('./src/routes/votes')(app)           /*   http://localhost:3000/api/vote/like/:id    cette route permet de faire un like , id est celui de la publication concerne
 
+                                                  http://localhost:3000/api/vote/like/count/:id  cette route permet d'avoir le nombre de like d'une publication et id est celui de la publication 
+*/ 
+require('./src/routes/dislike')(app)           //http://localhost:3000/api/vote/dislike/:id
 /*
 http://localhost:3000/api/vote/like/:id   
 
-http://localhost:3000/api/vote/dislike/:id
 
-http://localhost:3000/api/vote/:id
+
+
+
 
 http://localhost:3000/api/vote/like/count/:id
 
