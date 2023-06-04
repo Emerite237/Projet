@@ -146,6 +146,13 @@ vote.belongsTo(utilisateur,{
   foreignKey: 'id_utilisateur'
 })
 
+utilisateur.hasMany(commentaire,{
+  foreignKey: 'id_utilisateur'
+})
+
+commentaire.belongsTo(utilisateur,{
+  foreignKey: 'id_utilisateur'
+})
 module.exports = { 
  sequelize, utilisateur, post, img, type, ville, region, categorie, commentaire,vote, verification, favori,imagesuploads
 }

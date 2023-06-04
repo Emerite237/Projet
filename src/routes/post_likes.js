@@ -5,7 +5,7 @@ const {utilisateur} = require('../db/sequelize')
 const {vote} = require('../db/sequelize')
 const auth = require('../auth/isAuth')
 module.exports = (app) => {
-  app.get('/api/likes',auth, (req, res) => {
+  app.get('/api/likes', (req, res) => {
    post.findAll({
       include:[{
         model:type,

@@ -20,7 +20,7 @@ module.exports = (app) => {
 
 // connexion de l'utilisateur
 
-  app.post('/api/login', notAuth, async(req, res) => {
+  app.post('/api/login', async(req, res) => {
     utilisateur.findOne({
       where:{
         email:req.body.email

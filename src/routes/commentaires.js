@@ -1,6 +1,10 @@
 const {commentaire} = require('../db/sequelize')
+const {utilisateur} = require('../db/sequelize')
 const {posts} = require('../db/sequelize')
 const auth = require('../auth/isAuth')
+
+const {ValidationError}= require('sequelize')
+const {UniqueConstraintError}=require('sequelize')
 
 module.exports = (app) => {
   app.post('/api/commentaire/nouveau', auth, (req, res) => {
@@ -21,7 +25,18 @@ module.exports = (app) => {
   })
 
   app.get('/api/commentaire/:id_post', auth, (req, res) => {
-    commentaire.findAll({where: {id_post:req.params.id_post}})
+    commentaire.findAll(
+      
+      
+      {
+        include:[{
+            model:utilisateur,
+            as:'utilisateur',
+            attributes:['nom']
+
+        }],
+        
+        where: {id_post:req.params.id_post}})
        .then(commentaires => {
          const message = 'La liste des commentaires a bien été récupérée.'
          res.json({ message, data: commentaires })

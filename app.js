@@ -52,19 +52,19 @@ require('./src/routes/findall_post')(app)      /*   http://localhost:3000/api/fi
                                                 
                                                     http://localhost:3000/api/findall/post?titre=le titre du site rechercher    pour des recherches plus precise
                                                */
-require('./src/routes/create_post')(app);    //    http://localhost:3000/api/post
+require('./src/routes/create_post')(app);    //    http://localhost:3000/api/post    
 require('./src/routes/update_post')(app);    //    http://localhost:3000/api/post/modifier/:id
 require('./src/routes/supprimer_post')(app);    //    http://localhost:3000/api/post/supprimer/:id
 
 
 
-
+require('./src/routes/post_region')(app)       //  http://localhost:3000/api/post_region/lib
 require('./src/routes/post_ville')(app)               
 require('./src/routes/favoris')(app)           
   //  http://localhost:3000/api/favoris
 require('./src/routes/commentaires')(app)
 //  http://localhost:3000/api/commentaire/nouveau  pour cree un commentaire
-//  http://localhost:3000/api/commentaire/:id_post   pour retourner les commentaire  d'un post en fonction de l'id 
+//  http://localhost:3000/api/commentaire/:id pour retourner les commentaire  d'un post en fonction de l'id 
 
 //  http://localhost:3000/api/commentaire/supprimer/:id_commentaire     pour supprimer un commentaire
 

@@ -3,11 +3,11 @@ const {ValidationError}= require('sequelize')
 const {UniqueConstraintError}=require('sequelize')
 const posts=require('../models/post')
 const cors= require('cors')
-
+const auth= require('../auth/isAuth')
 
 module.exports= (server) => {
-   server.post('/api/post',cors(), (req,res)=>{
-    posts.actif=1
+   server.post('/api/post',auth,cors(), (req,res)=>{
+    posts.actif=0
     posts.titre=req.body.titre
     posts.contenu=req.body.contenu
     posts.adresse=req.body.adresse

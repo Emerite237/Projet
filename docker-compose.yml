@@ -1,0 +1,33 @@
+
+version: "3.9"
+
+services:
+  db:
+    image: image-mysql
+   
+    environment:
+      MYSQL_ROOT_PASSWORD: cmr-trip
+      MYSQL_DATABASE: bd
+      MYSQL_USER: localhost
+      MYSQL_PASSWORD: cmr-trip
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+
+  api:
+    build: .
+  
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: localhost
+      DB_PORT: 3306
+      DB_NAME: bd
+      DB_USER: localhost
+      DB_PASSWORD:  cmr-trip
+
+volumes:
+  db-data:

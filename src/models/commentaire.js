@@ -11,9 +11,7 @@ module.exports = (sequelize,DataTypes)=> {
         commentaire:{
             type: DataTypes.TEXT,
             allowNull: false,
-            unique:{
-               msg: 'ce texte est deja pris' 
-            },
+           
             validate:{
                 notEmpty:{msg:" il s'sagit d'une chaine de charactere  obligatoire"},
                 notNull:{msg: 'cette propriete est requise'}
