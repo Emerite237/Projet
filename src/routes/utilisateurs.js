@@ -63,7 +63,7 @@ module.exports = (app) => {
 
                 console.log('Lien de vérification envoyé avec succès')
                 const message = `Votre adresse mail doit être vérifié pour terminer votre inscription </br> Un lien d'activativation vous a été envoyé dans votre boite mail`
-                res.status(500).json({message, data: utilisateur})
+                res.status(500).json(utilisateur)
                 
               }).catch((error)=>{
 

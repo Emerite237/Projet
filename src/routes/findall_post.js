@@ -14,19 +14,7 @@
 try {
 
     var posts= await  post.findAll({
-        include:[{
-            model:type,
-            as:'type_post',
-            attributes:['lib_type']
-
-        },{
-            model:ville,
-            as:'ville_post',
-            attributes:['lib_ville']
-
-
-        }
-    ],
+       
 
         
         where: {actif:1},

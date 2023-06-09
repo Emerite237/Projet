@@ -6,23 +6,17 @@ const cors= require('cors')
 const auth= require('../auth/isAuth')
 
 module.exports= (server) => {
-   server.post('/api/post',auth,cors(), (req,res)=>{
-    posts.actif=0
-    posts.titre=req.body.titre
-    posts.contenu=req.body.contenu
-    posts.adresse=req.body.adresse
-    posts.longitude=req.body.longitude
-    posts.latitude=req.body.latitude
-    
-    posts.lib_type=req.body.lib_type
-    posts.lib_ville=req.body.lib_ville
-    posts.lib_region=req.body.lib_region
-    posts.id_utilisateur= req.session.user.id_utilisateur
+   server.post('/api/post/:id',auth,cors(), (req,res)=>{
+  
+
+    req.body.actif=0
+    req.body.id_utilisateur= parseInt(req.params.id)
+
     var headers = req.headers;
 
     console.log(headers);
   
-      post.create(posts)
+      post.create(req.body)
        .then(post =>{
            const message ='le post a bien ete ajouter.'
            res.json({message,data: post})

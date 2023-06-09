@@ -64,6 +64,8 @@ require('./src/routes/favoris')(app)
   //  http://localhost:3000/api/favoris
 require('./src/routes/commentaires')(app)
 //  http://localhost:3000/api/commentaire/nouveau  pour cree un commentaire
+
+
 //  http://localhost:3000/api/commentaire/:id pour retourner les commentaire  d'un post en fonction de l'id 
 
 //  http://localhost:3000/api/commentaire/supprimer/:id_commentaire     pour supprimer un commentaire
@@ -88,22 +90,18 @@ http://localhost:3000/api/vote/like/:id
 
 
 
-
-
-
-http://localhost:3000/api/vote/like/count/:id
-
-http://localhost:3000/api/vote/dislike/count/:id
-
-http://localhost:3000/api/vote/likes
-
-
-
-
-
-
-
 */
+
+// route consacree au administrateur
+
+require('./src/routes/sitevalide')(app)      //  http://localhost:3000/api/post/sitevalide/:id
+
+
+
+
+
+
+
 
 // point de terminaison des images 
 
@@ -117,7 +115,7 @@ require('./src/routes/supprimer_image')(app);
 require('./src/routes/findall_image_imageuploads')(app);  // afficher a la fois les images present dans le serveur et celle qui ont des url  http://localhost:3000/api/image_imagesuploads
 
 
-require("./src/routes/uploade_image")(app);       //http://localhost:3000/api/upload
+require("./src/routes/uploade_image")(app);        //http://localhost:3000/api/upload
 require("./src/routes/findbypk_images_uploads")(app);  // http://localhost:3000//api/findbypk/image_imagesuploads/id_post
 require("./src/routes/findpk_images")(app);            // http://localhost:3000/api/img/id_post  pour avoir une image unique 
 
@@ -146,9 +144,9 @@ require('./src/routes/utilisateurs')(app)
 //point de terminaisons sur les types,villes,regions et categorie
 require('./src/routes/create_type')(app);       //    http://localhost:3000/api/type
 require('./src/routes/create_categorie')(app);       //    http://localhost:3000/api/categorie
-require('./src/routes/create_ville')(app);      //   http://localhost:3000/api/ville
+require('./src/routes/create_ville')(app);      //   http://localhost:3000/api/ville/:lib
 
-require('./src/routes/create_region')(app);       //   http://localhost:3000/api/region
+require('./src/routes/create_region')(app);       //   http://localhost:3000/api/post_region/: lib
 
 //
 

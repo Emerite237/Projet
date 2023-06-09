@@ -4,23 +4,12 @@ const {ville} = require('../db/sequelize')
 const {utilisateur} = require('../db/sequelize')
 module.exports = (app) => {
   
-  app.get('/api/ville/:id', (req, res) => {
+  app.get('/api/ville/:lib', (req, res) => {
 
     post.findAll({
-       include:[{
-         model:type,
-         as:'type_post'
-       },
-       {
-         model:ville,
-         as:'ville_post'
-       },
-       {
-         model:utilisateur,
-         as:'utilisateur_post'
-       }],
+     
        where: {actif:1,
-      id_ville: req.params.id}
+      lib_ville: req.params.lib}
    })
        .then(posts => {
          const message = 'La liste des posts a bien été récupérée.'

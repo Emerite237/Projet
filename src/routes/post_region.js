@@ -3,9 +3,9 @@ const {type} = require('../db/sequelize')
 const {ville} = require('../db/sequelize')
 const {utilisateur} = require('../db/sequelize')
 module.exports = (app) => {
-  app.get('/api/post_region/lib', (req, res) => {
+  app.get('/api/post_region/:lib', (req, res) => {
    post.findAll({
-    where: {lib_region:lib}
+    where: {lib_region:req.params.lib}
   })
       .then(posts => {
         const message = 'La liste des posts a bien été récupérée.'
